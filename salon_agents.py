@@ -1,6 +1,7 @@
 import os
 from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
 from langchain_openai import ChatOpenAI
+from dotenv import load_dotenv
 
 load_dotenv()
 
@@ -26,7 +27,7 @@ def get_llm():
     model=os.getenv("OPENAI_MODEL", "gpt-4o-mini")
     return ChatOpenAI(model=model, temperature=0.2)
 
-def build_message(chat_history):
+def build_messages(chat_history):
     messages=[SystemMessage(content=SYSTEM_PROMPT)]
 
     recent_history=chat_history[-8:]
